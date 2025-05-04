@@ -2,6 +2,8 @@
 #include "Windows.h"
 #include <cstdint>
 
+// Hyprion Version: version-c3c1514fd260482e
+
 namespace ofssetss_new
 {
     // whitelist stuff
