@@ -33,9 +33,6 @@ This bypass:
 
 - ✅ Working CFG bypass even after Hyperion patch
 - ✅ Manual mapping (mmap) compatible
-- ✅ Safe and stable for indirect call/jmp usage
-- ✅ Fully documented code to help others learn
-
 ---
 
 ## 🧠 Learn More or Need Help?
