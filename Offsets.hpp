@@ -2,7 +2,7 @@
 #include "Windows.h"
 #include <cstdint>
 
-// Hyprion Version: version-ff05edc617954c5b
+// Hyprion Version: version-3c1b78b767674c66
 
 namespace ofssetss_new
 {
