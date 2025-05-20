@@ -30,7 +30,7 @@
         } PageEntry;                                                              \
         PageEntry.page_hash = HashPage(Page);                                     \
         PageEntry.validation = ValidationByte(Page);                              \
-        sub_e15010(memory_map, &PageEntry.page_hash, &PageEntry.validation);      \
+        insert_set(memory_map, &PageEntry.page_hash, &PageEntry.validation);      \
     }                                                                             \
 }
 
