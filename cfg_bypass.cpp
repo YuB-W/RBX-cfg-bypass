@@ -1,6 +1,6 @@
 // cfg_bypass.cpp
 // ✅ Roblox CFG Bypass - Working After Hyperion Patch
-// Hyprion Version: version-9f371db70cc24a92
+// Hyprion Version: version-1ae53095a115415d
 
 #include <cstdint>
 #include <cstddef>
@@ -8,15 +8,15 @@
 
 #define RELOC_FLAG(RelInfo) (((RelInfo) >> 12) == IMAGE_REL_BASED_DIR64)
 
-#define CFG_IDENTITY            0x317ab329 
-#define CFG_PAGE_HASH_KEY       0x27F5B1E 
-#define CFG_VALIDATION_XOR      0xA5       
-
-#define ValidationByte(Page) \
-    ((((uintptr_t)(Page) >> 0x2c) ^ CFG_VALIDATION_XOR))
+#define CFG_IDENTITY            0xab48913c  
+#define CFG_PAGE_HASH_KEY       0x6A9E2E64   // UPDATED!
+#define CFG_VALIDATION_XOR      0x9B         // UPDATED!
 
 #define HashPage(Page) \
     ((((uintptr_t)(Page) >> 12) ^ CFG_PAGE_HASH_KEY))
+
+#define ValidationByte(Page) \
+    ((((uintptr_t)(Page) >> 44) ^ CFG_VALIDATION_XOR))
 
 #define BatchWhitelistRegion(Start, Size)                                         \
 {                                                                                 \
@@ -30,7 +30,7 @@
         } PageEntry;                                                              \
         PageEntry.page_hash = HashPage(Page);                                     \
         PageEntry.validation = ValidationByte(Page);                              \
-        insert_set(memory_map, &Identity, &PageEntry);                            \
+        sub_e15010(memory_map, &PageEntry.page_hash, &PageEntry.validation);      \
     }                                                                             \
 }
 
