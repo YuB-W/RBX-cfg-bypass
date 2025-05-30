@@ -1,6 +1,6 @@
 // cfg_bypass.cpp
 // ✅ Roblox CFG Bypass - Working After Hyperion Patch
-// Hyprion Version: version-1ae53095a115415d
+// Hyprion Version: version-ad3ee47cdc5e44f6
 
 #include <cstdint>
 #include <cstddef>
