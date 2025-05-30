@@ -1,11 +1,12 @@
 #pragma once
-#include "Windows.h"
 #include <cstdint>
 
-namespace ofssetss_new
-{
-    // whitelist stuff
-   static constexpr auto set_insert = 0xB86550;  
-   static constexpr auto whitelist_page = 0x286640;  
-   static constexpr auto Bitmap = 0x282f68; 
+namespace unordered_set {
+    using insert = void* (__fastcall*)(void*, void*, void*);
 }
+
+
+static const uintptr_t set_insert = 0xD77510;
+static const uintptr_t Bitmap = 0x2855A8;
+static const uintptr_t whitelist_page = 0x29cbd6;
+static const uintptr_t whitelist_page2 = 0x2A3820;
