@@ -6,6 +6,6 @@ namespace unordered_set {
 }
 
 
-static const uintptr_t set_insert = 0xe63000;
-static const uintptr_t Bitmap = 0x2d6960;
-static const uintptr_t whitelist_page = 0x2d5c28;
+static const uintptr_t set_insert = 0xDC8280;
+static const uintptr_t Bitmap = 0x2843D8;
+static const uintptr_t whitelist_page = 0x2834b8;
