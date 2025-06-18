@@ -1,6 +1,6 @@
 // cfg_bypass.cpp
 // ✅ Roblox CFG Bypass - Working After Hyperion Patch
-// Hyprion Version: version-9bf2d7ce6a0345d5
+// Hyprion Version: version-82f8ee8d17124507 
 
 #include <cstdint>
 #include <cstddef>
@@ -8,8 +8,8 @@
 
 #define RELOC_FLAG(RelInfo) (((RelInfo) >> 12) == IMAGE_REL_BASED_DIR64)
 
-#define CFG_PAGE_HASH_KEY       0xe852b98e
-#define CFG_VALIDATION_XOR      0xd7
+#define CFG_PAGE_HASH_KEY       0x67AA0809
+#define CFG_VALIDATION_XOR      0xC6
 
 #define HashPage(Page) \
     ((((uintptr_t)(Page) >> 12) ^ CFG_PAGE_HASH_KEY))
