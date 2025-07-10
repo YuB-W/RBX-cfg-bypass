@@ -1,6 +1,6 @@
-// cfg_bypass.cpp
-// ✅ Roblox CFG Bypass - Working After Hyperion Patch
-// Hyprion Version: version-82f8ee8d17124507 
+// YuB-X Version: 2.0.8
+// Roblox Version: version-765338e04cf54fde
+// Dump Time:      2025-07-09 22:43:00
 
 #include <cstdint>
 #include <cstddef>
@@ -8,8 +8,9 @@
 
 #define RELOC_FLAG(RelInfo) (((RelInfo) >> 12) == IMAGE_REL_BASED_DIR64)
 
-#define CFG_PAGE_HASH_KEY       0x67AA0809
-#define CFG_VALIDATION_XOR      0xC6
+#define WHITELIST_MODE_TAG 0xd0698f90;
+#define CFG_PAGE_HASH_KEY  0xC9E94648;
+#define CFG_VALIDATION_XOR 0xD;
 
 #define HashPage(Page) \
     ((((uintptr_t)(Page) >> 12) ^ CFG_PAGE_HASH_KEY))
@@ -20,16 +21,17 @@
 #define BatchWhitelistRegion(Start, Size)                                                      \
 {                                                                                              \
     uint8_t stack_block[0x40] = {};                                                            \
+    *reinterpret_cast<uint32_t*>(stack_block + 0x14) = WHITELIST_MODE_TAG;                     \
+                                                                                               \
     uintptr_t AlignedStart = (uintptr_t)(Start) & ~0xFFFULL;                                   \
     uintptr_t AlignedEnd   = ((uintptr_t)(Start) + (Size) + 0xFFFULL) & ~0xFFFULL;             \
     for (uintptr_t Page = AlignedStart; Page < AlignedEnd; Page += 0x1000)                     \
     {                                                                                          \
-        uint32_t page_hash = HashPage(Page);                                                   \
-        uint8_t validation = ValidationByte(Page);                                             \
-        *reinterpret_cast<uint32_t*>(stack_block + 0x18) = page_hash;                          \
-        *reinterpret_cast<uint8_t*>(stack_block + 0x1C) = validation;                          \
+        *reinterpret_cast<uint32_t*>(stack_block + 0x18) = HashPage(Page);                     \
+        *reinterpret_cast<uint8_t*>(stack_block + 0x1C) = ValidationByte(Page);                \
+                                                                                               \
         insert_set(whitelist,                                                                  \
-                   stack_block + 0x28,                                                         \
+                   stack_block + 0x14,                                                         \
                    stack_block + 0x18);                                                        \
     }                                                                                          \
 }
@@ -42,3 +44,4 @@ for (auto pg = pBase; pg < pBase + pOpt->SizeOfImage; pg += 0x1000) {
 *reinterpret_cast<std::uint32_t*>(*reinterpret_cast<std::uintptr_t*>(bitmap) + (pg >> 0x13)) |=
     1 << ((pg >> 0x10 & 7) % 0x20);
 }
+
