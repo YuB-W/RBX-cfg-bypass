@@ -2,7 +2,7 @@
 
 > A working Control Flow Guard (CFG) bypass for Roblox after the latest Hyperion patch.
 > 
-> ✅ Confirmed working on **Roblox version: `version-765338e04cf54fde`**
+> ✅ Confirmed working on **Roblox version: `version-2a06298afe3947ab`**
 ---
 
 ## ⚙️ About
